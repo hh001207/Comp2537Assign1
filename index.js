@@ -95,7 +95,20 @@ app.get('/nosql-injection', async (req,res) => {
 });
 
 
-
+app.get('/contact', (req,res) => {
+    var missingEmail = req.query.missing;
+    var html = `
+        email address:
+        <form action='/submitEmail' method='post'>
+            <input name='email' type='text' placeholder='email'>
+            <button>Submit</button>
+        </form>
+    `;
+    if (missingEmail) {
+        html += "<br> email is required";
+    }
+    res.send(html);
+});
 
 app.post('/submitEmail', (req,res) => {
     var email = req.body.email;
@@ -110,14 +123,14 @@ app.post('/submitEmail', (req,res) => {
 
 app.get('/createUser', (req,res) => {
     var html = `
-		create user
-		<form action='/submit' method='post'>
-		<input name='username' type='text' placeholder='username'><br>
-		<input name='email' type='email' placeholder='email'><br>
-		<input name='password' type='password' placeholder='password'><br>
-		<button>Submit</button>
-		</form>
-		`;
+    create user
+    <form action='/submitUser' method='post'>
+    <input name='username' type='text' placeholder='name'>
+    <input name='email' type='text' placeholder='email'>
+    <input name='password' type='password' placeholder='password'>
+    <button>Submit</button>
+    </form>
+    `;
     res.send(html);
 });
 
