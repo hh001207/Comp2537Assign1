@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 	} else {
 		res.send(`
 			<p>Hello, ${req.session.username}!</p>
-			<button><a href='/user'">Go to Members Area</a></button>
+			<button><a href='/member'">Go to Members Area</a></button>
 			<br>
             <button><a href='/logout'">Logout</a></button>
 			`);
