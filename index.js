@@ -50,7 +50,7 @@ app.use(session({
 app.get('/', (req, res) => {
 	if (!req.session.authenticated) {
 		res.send(`
-			<button><a href='/signup'">Sign up</a></button>
+			<button><a href='/createUser'">Sign up</a></button>
 			<br><br>
 			<button><a href='/login'">Log in</a></button>
 			`);
