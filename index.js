@@ -149,14 +149,11 @@ app.get('/login', (req,res) => {
 
 app.post('/submitUser', async (req,res) => {
     var username = req.body.username;
-		var email = req.body.email;
     var password = req.body.password;
-		
 
 	const schema = Joi.object(
 		{
 			username: Joi.string().alphanum().max(20).required(),
-			email: Joi.string().email().required(),
 			password: Joi.string().max(20).required()
 		});
 	
@@ -169,7 +166,7 @@ app.post('/submitUser', async (req,res) => {
 
     var hashedPassword = await bcrypt.hash(password, saltRounds);
 	
-	await userCollection.insertOne({username: username, email: email, password: hashedPassword});
+	await userCollection.insertOne({username: username, password: hashedPassword});
 	console.log("Inserted user");
     res.redirect("/login");
 });
