@@ -149,11 +149,14 @@ app.get('/login', (req,res) => {
 
 app.post('/submitUser', async (req,res) => {
     var username = req.body.username;
+		var email = req.body.email;
     var password = req.body.password;
+		
 
 	const schema = Joi.object(
 		{
 			username: Joi.string().alphanum().max(20).required(),
+			email: Joi.string().email().required(),
 			password: Joi.string().max(20).required()
 		});
 	
